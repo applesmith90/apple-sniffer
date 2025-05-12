@@ -34,12 +34,12 @@ def main():
         # Apple images
         "https://upload.wikimedia.org/wikipedia/commons/1/15/Red_Apple.jpg",
         "https://upload.wikimedia.org/wikipedia/commons/f/f4/Honeycrisp.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/4/42/Golden_delicious_apple.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Golden_Delicious_apples.jpg/500px-Golden_Delicious_apples.jpg",
 
         # Non-apple images
-        "https://upload.wikimedia.org/wikipedia/commons/3/36/Kiwifruit.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/0/08/Banana-Single.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/1/14/Orange-Fruit-Pieces.jpg"
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Kiwifruit_cross_section.jpg/500px-Kiwifruit_cross_section.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Bananas.jpg/500px-Bananas.jpg", 
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Oranges_-_whole-halved-segment.jpg/960px-Oranges_-_whole-halved-segment.jpg"
     ]
 
     urls_to_check = [args.url] if args.url else test_urls
