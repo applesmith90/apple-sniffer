@@ -5,7 +5,8 @@ from io import BytesIO
 
 
 def fetch_image_from_url(url):
-    response = requests.get(url)
+    headers = {"User-Agent": "Mozilla/5.0 (compatible; AppleSniffer/1.0)"}
+    response = requests.get(url, headers=headers)
     response.raise_for_status()
     return Image.open(BytesIO(response.content))
 
@@ -26,17 +27,33 @@ def detect_apple(image: Image.Image) -> bool:
 
 def main():
     parser = argparse.ArgumentParser(description="Detect if an apple exists in an image from a URL.")
-    parser.add_argument("url", help="URL of the image to analyze")
+    parser.add_argument("url", nargs="?", help="URL of the image to analyze")
     args = parser.parse_args()
 
-    try:
-        image = fetch_image_from_url(args.url)
-        if detect_apple(image):
-            print("\U0001F34E Apple detected!")
-        else:
-            print("\u274C No apple found.")
-    except Exception as e:
-        print(f"Error: {e}")
+    test_urls = [
+        # Apple images
+        "https://upload.wikimedia.org/wikipedia/commons/1/15/Red_Apple.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/f/f4/Honeycrisp.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/4/42/Golden_delicious_apple.jpg",
+
+        # Non-apple images
+        "https://upload.wikimedia.org/wikipedia/commons/3/36/Kiwifruit.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/0/08/Banana-Single.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/1/14/Orange-Fruit-Pieces.jpg"
+    ]
+
+    urls_to_check = [args.url] if args.url else test_urls
+
+    for url in urls_to_check:
+        print(f"\nChecking URL: {url}")
+        try:
+            image = fetch_image_from_url(url)
+            if detect_apple(image):
+                print("\U0001F34E Apple detected!")
+            else:
+                print("\u274C No apple found.")
+        except Exception as e:
+            print(f"Error: {e}")
 
 
 if __name__ == "__main__":
